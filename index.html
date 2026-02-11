@@ -170,36 +170,29 @@
     </div>
 
     <script>
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzb-TdCk2csB7M8z8q4apNU8emMOnfGQESvopKO6FSykbrqk6DPt4yile4MOmvyQp7TPw/exec"; // dari Apps Script
-const WA_ADMIN = "6283166537109"; // ganti nomor WA admin sekolah
+// Ganti baris ini
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwWD2tCMgCfJdZIEAL-2EJ5GqIOf7MQBDXDeaH72jIZmfKtBoRPABWV1eJV3pz8B21EHg/exec";
+const WA_ADMIN = "6283166537109"; // Format 62 agar link WhatsApp lancar
 
 const form = document.getElementById('guestbookForm');
 
 form.addEventListener('submit', async function(e) {
     e.preventDefault();
-
+    
+    // Ambil data dari input
     const nama = document.getElementById('name').value;
     const instansi = document.getElementById('organization').value;
     const keperluan = document.getElementById('purpose').value;
 
-    const waktu = new Date().toLocaleString('id-ID', { 
-        weekday: 'long', 
-        day: 'numeric', 
-        month: 'long', 
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-    });
-
     try {
-        // Tampilkan loading (opsional)
-        console.log("Sedang mengirim data...");
-
-        const response = await fetch(WEB_APP_URL, {
+        // Kirim data ke Google Sheets
+        // Gunakan mode: 'no-cors' dan Content-Type: 'text/plain' 
+        // untuk mengatasi "Failed to Fetch"
+        await fetch(WEB_APP_URL, {
             method: "POST",
-            mode: "no-cors", // Tambahkan ini jika Anda tetap menemukan error CORS
+            mode: "no-cors", 
             headers: {
-                "Content-Type": "text/plain" // Gunakan text/plain untuk menghindari CORS preflight
+                "Content-Type": "text/plain"
             },
             body: JSON.stringify({
                 nama: nama,
@@ -208,30 +201,29 @@ form.addEventListener('submit', async function(e) {
             })
         });
 
-        // Catatan: Jika menggunakan mode: "no-cors", kita tidak bisa membaca 'result.status'
-        // Karena response akan bertipe 'opaque'. Jadi kita langsung arahkan ke WhatsApp.
-        
+        // Setelah kirim ke Sheet, buat format pesan WA
+        const waktuPesan = new Date().toLocaleString('id-ID');
         const pesanWA = `*🏛️ SITAMU SMASA - TAMU BARU*\n` +
                         `----------------------------------\n` +
                         `👤 Nama : ${nama}\n` +
                         `🏢 Instansi : ${instansi}\n` +
                         `📝 Keperluan : ${keperluan}\n` +
-                        `⏰ Waktu : ${waktu}\n` +
+                        `⏰ Waktu : ${waktuPesan}\n` +
                         `----------------------------------\n` +
                         `SITAMU SMAN 1 Magetan`;
 
+        // Buka WhatsApp Admin
         window.open(`https://wa.me/${WA_ADMIN}?text=${encodeURIComponent(pesanWA)}`, '_blank');
-        
+
+        // Tampilkan modal sukses
         document.getElementById('successModal').classList.remove('hidden');
         form.reset();
 
     } catch (error) {
-        console.error("Error detail:", error);
-        alert("⚠️ Terjadi kesalahan koneksi. Pastikan internet stabil.");
+        alert("Terjadi kesalahan: " + error.message);
     }
 });
 </script>
 
 </body>
-
 </html>
