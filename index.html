@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SITAMU SMASA | SMAN 1 Magetan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f0f9ff;
+            background-image: radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.2) 0, transparent 50%), 
+                              radial-gradient(at 50% 0%, rgba(245, 158, 11, 0.1) 0, transparent 50%);
+            min-height: 100vh;
+        }
+
+        .main-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-input {
+            background: white;
+            border: 2px solid #e2e8f0;
+            color: #1e293b;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .form-input:focus {
+            border-color: #0ea5e9;
+            box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1);
+            outline: none;
+        }
+
+        .btn-vibrant {
+            background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
+            transition: all 0.3s ease;
+        }
+
+        .btn-vibrant:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+            filter: saturate(1.2);
+        }
+
+        .text-sitamu {
+            background: linear-gradient(to right, #0369a1, #0ea5e9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-slide-in {
+            animation: slideIn 0.6s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center p-6">
+
+    <div class="max-w-5xl w-full main-card rounded-[3rem] overflow-hidden flex flex-col md:flex-row animate-slide-in">
+        
+        <!-- Section Kiri: Branding SITAMU -->
+        <div class="md:w-5/12 bg-white p-12 flex flex-col items-center justify-center text-center relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-sky-50 rounded-full -mr-16 -mt-16 opacity-60"></div>
+            
+            <div class="relative z-10">
+                <img src="https://smasa-magetan.sch.id/wp-content/uploads/2023/06/LOGO-SMA-NEGERI-1-MAGETAN-258x300.png" 
+                     alt="Logo SMAN 1 Magetan" 
+                     class="w-36 md:w-48 mb-6 drop-shadow-xl hover:scale-105 transition-transform duration-500">
+                
+                <h2 class="text-4xl font-black tracking-tighter text-sitamu mb-1">SITAMU</h2>
+                <h3 class="text-sky-900 font-extrabold text-xl tracking-wide">SMASA</h3>
+                
+                <div class="h-1 w-16 bg-amber-400 mx-auto my-4 rounded-full"></div>
+                
+                <p class="text-slate-500 font-semibold text-xs uppercase tracking-[0.2em] leading-relaxed">
+                    Sistem Informasi<br>Tamu Digital
+                </p>
+                
+                <p class="text-slate-400 text-[10px] mt-8 font-medium italic">
+                    SMAN 1 Magetan
+                </p>
+            </div>
+        </div>
+
+        <!-- Section Kanan: Form SITAMU -->
+        <div class="md:w-7/12 p-10 md:p-16 bg-white/30">
+            <div class="mb-10">
+                <h2 class="text-3xl font-black text-slate-800 leading-tight">Registrasi <span class="text-sky-600">Kedatangan</span></h2>
+                <p class="text-slate-500 mt-2 font-medium">Silakan lengkapi identitas Anda untuk pendataan digital.</p>
+            </div>
+
+            <form id="guestbookForm" class="space-y-6">
+                <!-- Nama -->
+                <div class="space-y-2">
+                    <label class="text-xs font-bold text-slate-600 uppercase tracking-wider ml-1">Nama Lengkap</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-sky-500">
+                            <i class="fas fa-user-check"></i>
+                        </span>
+                        <input type="text" id="name" required
+                               class="form-input w-full pl-12 pr-4 py-4 rounded-2xl text-slate-800 placeholder-slate-300 font-medium"
+                               placeholder="Nama lengkap sesuai KTP/ID">
+                    </div>
+                </div>
+
+                <!-- Instansi -->
+                <div class="space-y-2">
+                    <label class="text-xs font-bold text-slate-600 uppercase tracking-wider ml-1">Asal Instansi</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-sky-500">
+                            <i class="fas fa-building"></i>
+                        </span>
+                        <input type="text" id="organization" required
+                               class="form-input w-full pl-12 pr-4 py-4 rounded-2xl text-slate-800 placeholder-slate-300 font-medium"
+                               placeholder="Instansi, Perusahaan, atau Alamat">
+                    </div>
+                </div>
+
+                <!-- Tujuan -->
+                <div class="space-y-2">
+                    <label class="text-xs font-bold text-slate-600 uppercase tracking-wider ml-1">Keperluan</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-4 pt-4 flex items-start text-sky-500">
+                            <i class="fas fa-comment-dots"></i>
+                        </span>
+                        <textarea id="purpose" required rows="3"
+                                  class="form-input w-full pl-12 pr-4 py-4 rounded-2xl text-slate-800 placeholder-slate-300 font-medium"
+                                  placeholder="Tuliskan alasan kunjungan Anda..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Tombol Submit -->
+                <div class="pt-4">
+                    <button type="submit" 
+                            class="btn-vibrant w-full text-white font-black py-5 rounded-2xl flex items-center justify-center gap-4 text-xl shadow-xl shadow-sky-200">
+                        <i class="fab fa-whatsapp text-2xl"></i>
+                        KIRIM DATA
+                    </button>
+                    <div class="flex items-center justify-center gap-3 mt-8">
+                        <div class="h-px w-6 bg-slate-200"></div>
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em]">Unggul dalam Prestasi</p>
+                        <div class="h-px w-6 bg-slate-200"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Konfirmasi SITAMU -->
+    <div id="successModal" class="fixed inset-0 bg-sky-950/40 backdrop-blur-md flex items-center justify-center hidden z-50 p-6">
+        <div class="bg-white max-w-sm w-full p-10 rounded-[3rem] text-center shadow-2xl border border-white relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-sky-500 to-amber-400"></div>
+            <div class="w-20 h-20 bg-sky-50 text-sky-500 rounded-3xl rotate-12 flex items-center justify-center text-4xl mx-auto mb-6 shadow-sm">
+                <i class="fas fa-check-double -rotate-12"></i>
+            </div>
+            <h3 class="text-slate-800 font-black text-2xl mb-2">Terima Kasih</h3>
+            <p class="text-slate-500 text-sm mb-8 leading-relaxed font-medium">Data kunjungan Anda telah terverifikasi di sistem SITAMU SMASA. Mohon tunggu petugas kami.</p>
+            <button onclick="closeModal()" class="w-full bg-slate-900 hover:bg-black text-white font-bold py-4 rounded-2xl transition shadow-lg">
+                Tutup
+            </button>
+        </div>
+    </div>
+
+    <script>
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzb-TdCk2csB7M8z8q4apNU8emMOnfGQESvopKO6FSykbrqk6DPt4yile4MOmvyQp7TPw/exec"; // dari Apps Script
+const WA_ADMIN = "083166537109"; // ganti nomor WA admin sekolah
+
+const form = document.getElementById('guestbookForm');
+
+form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const nama = document.getElementById('name').value;
+    const instansi = document.getElementById('organization').value;
+    const keperluan = document.getElementById('purpose').value;
+
+    const waktu = new Date().toLocaleString('id-ID', { 
+        weekday: 'long', 
+        day: 'numeric', 
+        month: 'long', 
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+
+    try {
+        // Tampilkan loading (opsional)
+        console.log("Sedang mengirim data...");
+
+        const response = await fetch(WEB_APP_URL, {
+            method: "POST",
+            mode: "no-cors", // Tambahkan ini jika Anda tetap menemukan error CORS
+            headers: {
+                "Content-Type": "text/plain" // Gunakan text/plain untuk menghindari CORS preflight
+            },
+            body: JSON.stringify({
+                nama: nama,
+                instansi: instansi,
+                keperluan: keperluan
+            })
+        });
+
+        // Catatan: Jika menggunakan mode: "no-cors", kita tidak bisa membaca 'result.status'
+        // Karena response akan bertipe 'opaque'. Jadi kita langsung arahkan ke WhatsApp.
+        
+        const pesanWA = `*🏛️ SITAMU SMASA - TAMU BARU*\n` +
+                        `----------------------------------\n` +
+                        `👤 Nama : ${nama}\n` +
+                        `🏢 Instansi : ${instansi}\n` +
+                        `📝 Keperluan : ${keperluan}\n` +
+                        `⏰ Waktu : ${waktu}\n` +
+                        `----------------------------------\n` +
+                        `SITAMU SMAN 1 Magetan`;
+
+        window.open(`https://wa.me/${WA_ADMIN}?text=${encodeURIComponent(pesanWA)}`, '_blank');
+        
+        document.getElementById('successModal').classList.remove('hidden');
+        form.reset();
+
+    } catch (error) {
+        console.error("Error detail:", error);
+        alert("⚠️ Terjadi kesalahan koneksi. Pastikan internet stabil.");
+    }
+});
+</script>
+
+</body>
+</html>
